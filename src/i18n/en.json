@@ -1,0 +1,90 @@
+{
+  "nav": {
+    "app": "Wave Emotion Cards",
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact",
+    "emotions": "Emotions",
+    "login":"Login"
+  },
+  "footer": {
+    "titles": {
+      "report": "回報問題"
+    },
+    "contributors": {
+      "title": "Contributors",
+      "position": {
+        "pm": "Project Manager",
+        "pd": "Project Designer",
+        "fd": "Frontend Developer",
+        "fc": "Frontend Consultant",
+        "db": "Database Developer",
+        "bd": "Backend Developer",
+        "sd": "System Designer",
+        "gd": "Illustrator"
+      },
+      "name": {
+        "elma": "Shu-Ping Yu",
+        "wei": "Wei-Kai Lin",
+        "leon": "Leon Wu",
+        "yi": "Yi-Wen Fang"
+      },
+      "url": {
+        "elma": "https://www.linkedin.com/in/shu-ping-yu-238655268/",
+        "wei": "https://www.linkedin.com/in/%E5%81%89%E5%87%B1-%E6%9E%97-668aaa204/",
+        "leon": "https://theleon.at",
+        "yi": "https://a8607125167.wixsite.com/mysite/about"
+      }
+    },
+    "usefulLinks": {
+      "title":"Useful Links",
+      "list": {
+        "report": "Report an issue"
+      },
+      "url": {
+        "elma": "https://www.linkedin.com/in/shu-ping-yu-238655268/",
+        "wei": "https://www.linkedin.com/in/%E5%81%89%E5%87%B1-%E6%9E%97-668aaa204/",
+        "leon": "https://theleon.at",
+        "yi": "https://a8607125167.wixsite.com/mysite/about"
+      }
+    },
+    "subtitle": "Find your Emotions over the wave",
+    "copyright": "浪潮情緒卡 | Wave Emotion Cards",
+    "email": "mailto:info@wavemocards.com"
+  },
+  "pages": {
+    "home": {
+      "title": "Find your Emotions",
+      "subtitle": "over the wave"
+    },
+    "about": {
+      "title": "About Wave Emotion Cards",
+      "subtitle": "We are from Taiwan"
+    },
+    "emotions": {
+      "title": {
+        "h1": "Emotions",
+        "aboutEmotions": "About Emotions",
+        "6emotions": "6 basic emotions",
+        "emotionRange": "Emotions are neither good nor bad",
+        "emotionsHealth": "The Way to Emotional Health"
+      },
+      "content": {
+        "aboutEmotions": "Emotion in English is \"emotion,\" representing the energy that flows within our bodies. When we are stimulated, it triggers our inner feelings, bodily reactions, thoughts, and actions, which is emotion. For example, when someone steps into an alley and encounters a fierce-looking dog (stimulus), they feel very scared and worry about being bitten (inner feelings and thoughts), their heart races and they tremble (bodily reactions), and they ultimately decide to quickly take a detour and leave (action).",
+        "6emotions": {
+          "happy": "Happy",
+          "sadness": "Sadness",
+          "fear": "Fear",
+          "disgust": "Disgust",
+          "anger": "Anger",
+          "surprise": "Surprise",
+          "context": "Naturalist Darwin mentioned that humans have six basic emotions, including happiness, sadness, fear, disgust, anger, and surprise, which are instinctive emotions that help improve human survival chances. Other complex emotions such as excitement, grievance, inferiority, jealousy, guilt, and loneliness are derived from a mix of basic emotions and are produced after learning and socialization."
+        },
+        "emotionRange": "People generally tend to categorize emotions as positive or negative, believing that happiness is a positive emotion, while sadness, anger, and fear are harmful. In fact, emotions are neither good nor bad; each emotion has its unique significance. For example, feeling fear and unease in an unfamiliar environment reflects a desire for safety and reminds us to stay away from danger. Crying when sad and vulnerable can attract care and support, thereby promoting interpersonal connections.",
+        "emotionsHealth": "If there is a bias against emotions, denying and suppressing one's true feelings, pretending to be happy when actually sad, or silently enduring when angry, it can easily lead to physical and mental health problems. Emotional health does not mean maintaining a happy mood at all times, but rather having the ability to recognize different emotions, understand inner needs, and express and adjust them in a healthy and appropriate way, allowing the mind to return to peace."
+      },
+      "reference": "Source: The hongkong federation of youth groups | Wellness PLUS (KOWLOON)",
+      "refurl": "https://wmc.hkfyg.org.hk/emo1"
+    }
+  }
+}
