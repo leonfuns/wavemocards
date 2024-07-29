@@ -152,18 +152,7 @@
         "passwordEmptyError": "密碼不可為空",
         "passwordRequirementError": "密碼須符合以下要求：\n最少 8 個字元\n至少 1 個大寫字母\n至少 1 個小寫字母\n至少 1 個數字\n至少 1 個特殊字元",
         "confirmPasswordError": "與密碼不相符"
-      },
-      "name": "名稱：",
-      "role": "角色：",  
-      "birthday": "生日：",  
-      "password": "密碼：",
-      "oldPassword": "密碼：",
-      "newPassword": "密碼：",
-      "confirmPassword": "確認密碼：",
-      "save": "確認修改",
-      "creationTime": "創建日期：",
-      "lastSignInTime": "最後登入時間：",
-      "error": "錯誤"
+      }
     }
   },
   "element": {
