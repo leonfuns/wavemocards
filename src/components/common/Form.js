@@ -14,9 +14,9 @@ const Form = ({ fields, formData, errors, touched, showPassword, handleInputChan
         name={name}
         type={showPassword[name] ? "text" : type}
         required
-        className={`appearance-none rounded-none relative block w-full px-3 py-2 border ${
+        className={`appearance-none relative block w-full px-3 py-2 border-2 border-gray-300 placeholder-gray-500 text-gray-900 rounded-xl focus:outline-none focus:ring-teal-700 focus:border-teal-700 focus:z-10 sm:text-sm dark:focus:border-teal-200 dark:focus:ring-teal-200 ${
           errors[name] && touched[name] ? "border-red-300" : "border-gray-300"
-        } placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm`}
+        } `}
         placeholder={placeholder}
         value={formData[name]}
         onChange={handleInputChange}
@@ -25,7 +25,7 @@ const Form = ({ fields, formData, errors, touched, showPassword, handleInputChan
       {(name === "password" || name === "confirmPassword") && (
         <button
           type="button"
-          className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-800"
+          className={`absolute inset-y-0 right-0 pr-3 flex items-center text-gray-800 ${errors[name] ? "pb-5" : ""} `}
           onClick={() => togglePasswordVisibility(name)}
         >
           {showPassword[name] ? <FaEyeSlash /> : <FaEye />}
@@ -38,7 +38,7 @@ const Form = ({ fields, formData, errors, touched, showPassword, handleInputChan
   );
 
   const renderDatePicker = (name, placeholder) => (
-    <div key={name} className="relative w-full">
+    <div key={name} className="relative">
       <label htmlFor={name} className="sr-only">
         {placeholder}
       </label>
@@ -48,10 +48,10 @@ const Form = ({ fields, formData, errors, touched, showPassword, handleInputChan
         selected={formData[name]}
         onChange={(date) => handleInputChange({ target: { name, value: date } })}
         dateFormat="dd / MM / yyyy"
-        className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+        className="appearance-none rounded-xl relative block w-60 px-3 py-2 border-2 border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-teal-700 focus:border-teal-700 focus:z-10 sm:text-sm dark:focus:border-teal-200 dark:focus:ring-teal-200"
         placeholderText={placeholder}
       />
-      <FaCalendarAlt className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none" />
+      <FaCalendarAlt className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none"/>
     </div>
   );
 
@@ -63,15 +63,17 @@ const Form = ({ fields, formData, errors, touched, showPassword, handleInputChan
       <select
         id={name}
         name={name}
-        className={`appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm ${
+        className={`appearance-none rounded-xl relative block w-full px-3 py-2 border-2 border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-xl focus:outline-none focus:ring-teal-700 focus:border-teal-700 focus:z-10 sm:text-sm dark:focus:border-teal-200 dark:focus:ring-teal-200
+        ${
           formData[name] ? 'text-gray-900' : 'text-gray-500'
-        }`}
-        value={formData[name]}
+        }
+        `}
+        value={formData[name] || ""}
         onChange={handleInputChange}
       >
         <option value="" disabled hidden>{placeholder}</option>
         {options.map((option) => (
-          <option key={option} value={option} className="text-gray-900">
+          <option key={option} value={option}>
             {option}
           </option>
         ))}
@@ -95,7 +97,7 @@ const Form = ({ fields, formData, errors, touched, showPassword, handleInputChan
   };
 
   return (
-    <div className="rounded-md shadow-sm -space-y-px flex flex-col gap-5">
+    <div className="shadow-sm flex flex-col gap-5">
       {fields.map(renderField)}
     </div>
   );

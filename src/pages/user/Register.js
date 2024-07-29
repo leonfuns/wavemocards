@@ -1,21 +1,32 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useAuth } from "../../hooks/useAuth";
-import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { Helmet } from "react-helmet";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import { ThemeContext } from "../../context/ThemeContext";
 import md5 from "md5";
 import Form from "../../components/common/Form";
 import useForm from "../../hooks/useForm";
+import Button from "../../components/common/Button";
 
 const Register = () => {
   const { t } = useTranslation();
   const { login } = useAuth();
   const navigate = useNavigate();
+  const { isDarkMode } = useContext(ThemeContext);
   const [showPassword, setShowPassword] = useState({
     password: false,
     confirmPassword: false,
   });
   const [generalError, setGeneralError] = useState("");
+  const backgroundImage = isDarkMode
+    ? "url('/images/bg/bg-login-dark.svg')"
+    : "url('/images/bg/bg-login-light.svg')";
 
   const initialState = {
     email: "",
@@ -48,8 +59,11 @@ const Register = () => {
 
     try {
       const auth = getAuth();
-      const { email, name, password, 
-        // birthday, occupation 
+      const {
+        email,
+        name,
+        password,
+        // birthday, occupation
       } = formData;
       const userCredential = await createUserWithEmailAndPassword(
         auth,
@@ -57,7 +71,7 @@ const Register = () => {
         password
       );
       const user = userCredential.user;
-  
+
       const gravatarUrl = `https://www.gravatar.com/avatar/${md5(
         email.toLowerCase().trim()
       )}?d=404`;
@@ -68,12 +82,12 @@ const Register = () => {
           photoURL: gravatarUrl,
         });
       }
-  
+
       // console.log("Birthday:", birthday);
       // console.log("Occupation:", occupation);
-  
+
       await login(email, password);
-      navigate('/user/profile');
+      navigate("/user/profile");
     } catch (error) {
       console.error("Registration error:", error);
       setGeneralError(error.message);
@@ -87,19 +101,26 @@ const Register = () => {
   const fields = [
     { name: "email", type: "email", placeholder: "pages.register.form.email" },
     { name: "name", type: "text", placeholder: "pages.register.form.name" },
-    { name: "password", type: "password", placeholder: "pages.register.form.password" },
+    {
+      name: "password",
+      type: "password",
+      placeholder: "pages.register.form.password",
+    },
     {
       name: "confirmPassword",
       type: "password",
       placeholder: "pages.register.form.confirmPassword",
     },
-    { name: "birthday", type: "date", placeholder: "pages.register.form.birthday" },
+    {
+      name: "birthday",
+      type: "date",
+      placeholder: "pages.register.form.birthday",
+    },
     {
       name: "occupation",
       type: "select",
       placeholder: "pages.register.form.occupations",
       options: [
-        "暫不透露",
         "學生",
         "教師",
         "工程師",
@@ -108,54 +129,75 @@ const Register = () => {
         "商人",
         "藝術家",
         "其他",
+        "暫不透露",
       ],
     },
   ];
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8">
-        <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+    <>
+      <Helmet>
+        <title>
+          {t("nav.register")} | {t("footer.copyright")}
+        </title>
+      </Helmet>
+      <div className="min-h-screen -mt-[170px] md:-mt-[76px] flex items-center justify-center">
+        <div
+          className="invisible md:visible md:w-1/2 h-screen bg-local bg-cover bg-no-repeat bg-center"
+          style={{ backgroundImage }}
+        ></div>
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat md:hidden"
+          style={{ backgroundImage }}
+        ></div>
+        <div className="relative md:w-1/2 flex flex-col justify-center items-center">
+          <h1 className="text-4xl text-gray-100 md:text-[#3c9dae] my-12">
             {t("pages.register.title")}
-          </h2>
-        </div>
-        {generalError && (
-          <div
-            className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
-            role="alert"
-          >
-            <span className="block sm:inline">{generalError}</span>
-          </div>
-        )}
-        <form className="mt-8 space-y-6" onSubmit={handleRegister}>
-          <Form
-            fields={fields}
-            formData={formData}
-            errors={errors}
-            touched={touched}
-            showPassword={showPassword}
-            handleInputChange={handleInputChange}
-            handleBlur={handleBlur}
-            togglePasswordVisibility={togglePasswordVisibility}
-            t={t}
-          />
-          <div>
-            <button
-              type="submit"
-              className={`group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white ${
-                isFormValid
-                  ? "bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                  : "bg-gray-300 cursor-not-allowed"
-              }`}
-              disabled={!isFormValid}
+          </h1>
+          {generalError && (
+            <div
+              className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
+              role="alert"
             >
-              {t("pages.register.form.submit")}
-            </button>
-          </div>
-        </form>
+              <span className="block sm:inline">{generalError}</span>
+            </div>
+          )}
+          <form className="space-y-6 w-60 md:max-w-72" onSubmit={handleRegister}>
+            <Form
+              fields={fields}
+              formData={formData}
+              errors={errors}
+              touched={touched}
+              showPassword={showPassword}
+              handleInputChange={handleInputChange}
+              handleBlur={handleBlur}
+              togglePasswordVisibility={togglePasswordVisibility}
+              t={t}
+            />
+            <div>
+              <Button
+                text={t("pages.register.form.submit")}
+                type="submit"
+                variant="register"
+              />
+            </div>
+            {/* <div>
+              <button
+                type="submit"
+                className={`group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white ${
+                  isFormValid
+                    ? "bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    : "bg-gray-300 cursor-not-allowed"
+                }`}
+                disabled={!isFormValid}
+              >
+                {t("pages.register.form.submit")}
+              </button>
+            </div> */}
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
