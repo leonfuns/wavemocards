@@ -19,7 +19,7 @@ function Login() {
     e.preventDefault();
     try {
       await login(email, password);
-      navigate("/");
+      navigate("/user/profile");
     } catch (e) {
       setError(e.message);
     }
