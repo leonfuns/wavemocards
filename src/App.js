@@ -23,7 +23,7 @@ import NotFoundPage from "./pages/NotFoundPage";
 
 function AppContent() {
   const location = useLocation();
-  const isLoginPage = location.pathname === "/login";
+  const isLoginPage = location.pathname === "/login" || location.pathname === "/user/register";
 
   return (
     <div className="min-h-screen flex flex-col">
