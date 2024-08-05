@@ -28,7 +28,7 @@ function AppContent() {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="flex flex-col flex-grow  bg-gray-100 dark:bg-gray-900">
+      <main className="flex flex-col flex-grow flex-1 bg-gray-100 dark:bg-gray-900">
         {window.scrollTo(0, 0)}
         <Routes>
           <Route path="/" element={<Home />} />

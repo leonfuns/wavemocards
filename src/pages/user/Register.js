@@ -141,17 +141,17 @@ const Register = () => {
           {t("nav.register")} | {t("footer.copyright")}
         </title>
       </Helmet>
-      <div className="min-h-screen -mt-[170px] md:-mt-[76px] flex items-center justify-center">
+      <div className="relative flex items-center justify-center h-screen md:-mt-[76px] -mt-[100px]">
         <div
-          className="invisible md:visible md:w-1/2 h-screen bg-local bg-cover bg-no-repeat bg-center"
+          className="relative hidden md:flex flex-grow md:w-1/2 min-h-full bg-local bg-cover bg-no-repeat bg-center"
           style={{ backgroundImage }}
         ></div>
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat md:hidden"
           style={{ backgroundImage }}
         ></div>
-        <div className="relative md:w-1/2 flex flex-col justify-center items-center">
-          <h1 className="text-4xl text-gray-100 md:text-[#3c9dae] my-12">
+        <div className="md:w-1/2 flex flex-col justify-center items-center py-8 min-h-full">
+          <h1 className="relative text-4xl text-gray-100 md:text-[#3c9dae] mb-12">
             {t("pages.register.title")}
           </h1>
           {generalError && (
@@ -162,7 +162,10 @@ const Register = () => {
               <span className="block sm:inline">{generalError}</span>
             </div>
           )}
-          <form className="space-y-6 w-60 md:max-w-72" onSubmit={handleRegister}>
+          <form
+            className="space-y-6 w-60 md:max-w-72"
+            onSubmit={handleRegister}
+          >
             <Form
               fields={fields}
               formData={formData}
@@ -174,26 +177,13 @@ const Register = () => {
               togglePasswordVisibility={togglePasswordVisibility}
               t={t}
             />
-            <div>
+            <div className="relative">
               <Button
                 text={t("pages.register.form.submit")}
                 type="submit"
                 variant="register"
               />
             </div>
-            {/* <div>
-              <button
-                type="submit"
-                className={`group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white ${
-                  isFormValid
-                    ? "bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                    : "bg-gray-300 cursor-not-allowed"
-                }`}
-                disabled={!isFormValid}
-              >
-                {t("pages.register.form.submit")}
-              </button>
-            </div> */}
           </form>
         </div>
       </div>

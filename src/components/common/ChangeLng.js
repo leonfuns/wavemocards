@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { useLanguage } from "../../context/LanguageContext";
 import { LanguageIcon } from "@heroicons/react/16/solid";
 
-const ChangeLng = () => {
+const ChangeLng = ({ isMobile }) => {
   const { currentLanguage, changeLanguage } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
@@ -12,7 +12,7 @@ const ChangeLng = () => {
     { code: "ja", name: "日本語" },
     { code: "en", name: "English" },
   ];
-  
+
   const toggleDropdown = () => setIsOpen(!isOpen);
 
   const handleChangeLanguage = (lng) => {
@@ -41,16 +41,23 @@ const ChangeLng = () => {
   };
 
   return (
-    <div className="relative max-w-fit mx-1" ref={dropdownRef}>
+    <div
+      className={`relative ${isMobile ? "w-full" : "max-w-fit"} mx-1`}
+      ref={dropdownRef}
+    >
       <button
         onClick={toggleDropdown}
         className="flex items-center hover:text-[#3c9daeff] justify-center space-x-1 focus:outline-none h-9 px-2 py-1"
       >
         <LanguageIcon className="w-5 h-5" />
-        <span className="ml-1">{getCurrentLanguageName()}</span>
+        <span className="flex w-14 justify-center ml-1">{getCurrentLanguageName()}</span>
       </button>
       {isOpen && (
-        <div className="absolute right-0 mt-2 py-2 w-32 bg-white dark:bg-gray-800 rounded-md shadow-xl z-20">
+        <div
+          className={`${
+            isMobile ? "relative" : "absolute"
+          } right-0 mt-2 py-2  bg-white dark:bg-gray-800 rounded-md shadow-xl z-50`}
+        >
           {languages.map((lang) => (
             <button
               key={lang.code}
