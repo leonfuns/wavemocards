@@ -6,7 +6,7 @@ from sqlalchemy.orm import sessionmaker
 
 load_dotenv('.env.app')
 
-database_url = os.getenv('DATABASE_URL')
+SQLALCHEMY_DATABASE_URL = os.getenv('DATABASE_URL')
 
 engine = create_engine(
     SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False}
@@ -21,3 +21,6 @@ def get_db():
         yield db
     finally:
         db.close()
+        
+def create_tables():
+    Base.metadata.create_all(bind=engine)
